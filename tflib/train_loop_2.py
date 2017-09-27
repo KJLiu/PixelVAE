@@ -10,7 +10,7 @@ import locale
 import os
 import time
 import shutil
-
+from tqdm import trange
 locale.setlocale(locale.LC_ALL, '')
 
 PARAMS_FILE = 'params.ckpt'
@@ -21,7 +21,7 @@ def train_loop(
     session,
     inputs,
     cost,
-    train_data,
+    #train_data,
     stop_after,
     prints=[],
     test_data=None,
@@ -81,11 +81,14 @@ def train_loop(
 
     train_op = optimizer.apply_gradients(grads_and_vars)
 
-    def train_fn(input_vals):
+    def train_fn(input_vals=None):
         feed_dict = {sym:real for sym, real in zip(inputs, input_vals)}
+        #feed_dict = {}
+        #print feed_dict
         if bn_vars is not None:
             feed_dict[bn_vars[0]] = True
             feed_dict[bn_vars[1]] = 0
+        #print 'Sess run'
         return session.run(
             [p[1] for p in prints] + [train_op],
             feed_dict=feed_dict
@@ -93,6 +96,7 @@ def train_loop(
 
     def bn_stats_fn(input_vals, iter_):
         feed_dict = {sym:real for sym, real in zip(inputs, input_vals)}
+        #feed_dict={}
         feed_dict[bn_vars[0]] = True
         feed_dict[bn_vars[1]] = iter_
         return session.run(
@@ -118,30 +122,14 @@ def train_loop(
         'last_test': 0
     }
 
-    train_generator = train_data()
 
     saver = tf.train.Saver(write_version=tf.train.SaverDef.V2)
-
-    if os.path.isfile(TRAIN_LOOP_FILE):
-        print "Resuming interrupted train loop session"
-        with open(TRAIN_LOOP_FILE, 'r') as f:
-            _vars = pickle.load(f)
-        saver.restore(session, os.getcwd()+"/"+PARAMS_FILE)
-
-        print "Fast-fowarding dataset generator"
-        dataset_iters = 0
-        while dataset_iters < _vars['iteration']:
-            try:
-                train_generator.next()
-            except StopIteration:
-                train_generator = train_data()
-                train_generator.next()
-            dataset_iters += 1
-    else:
-        print "Initializing variables..."
-        session.run(tf.initialize_all_variables())
-        print "done!"
-
+#    saver.restore(session, "***.ckpt")
+    print "Initializing variables..."
+    session.run(tf.initialize_all_variables())
+    print "done!"
+    coord = tf.train.Coordinator()
+    threads = tf.train.start_queue_runners(sess=session, coord=coord)
     train_output_entries = [[]]
     
     def log(outputs, test, _vars, extra_things_to_print):
@@ -193,7 +181,7 @@ def train_loop(
 
         train_output_entries[0] = []
 
-    while True:
+    for i in trange(stop_after+1):
 
         if _vars['iteration'] == stop_after:
             save_train_output_and_params(_vars['iteration'])
@@ -209,19 +197,19 @@ def train_loop(
             break
 
         data_load_start_time = time.time()
-        try:
-            input_vals = train_generator.next()
-        except StopIteration:
-            train_generator = train_data()
-            input_vals = train_generator.next()
-            train_generator.next()
+        
+        #######################
+        if _vars['iteration'] * 64 > _vars['epoch'] * 162770:
             _vars['epoch'] += 1
+        # Set to update epoch number
+        #######################
         data_load_time = time.time() - data_load_start_time
-
+    
         if inject_iteration:
-            input_vals = [np.int32(_vars['iteration'])] + list(input_vals)
+            input_vals = [np.int32(_vars['iteration'])]
 
         start_time = time.time()
+        #print 'Start training'
         outputs = train_fn(input_vals)
         run_time = time.time() - start_time
 
@@ -234,26 +222,26 @@ def train_loop(
             if inject_iteration:
 
                 if bn_vars is not None: # If using batchnorm, run over a bunch of training data first to make the running-average stats good.
-                    _train_gen = train_data()
+                    #_train_gen = train_data()
                     for i in xrange(bn_stats_iters):
                         try:
-                            bn_stats_fn([np.int32(_vars['iteration'])] + list(_train_gen.next()), i)
+                            bn_stats_fn([np.int32(_vars['iteration'])], i)
                         except StopIteration:
-                            _train_gen = train_data()
-                            bn_stats_fn([np.int32(_vars['iteration'])] + list(_train_gen.next()), i)
+                            #_train_gen = train_data()
+                            bn_stats_fn([np.int32(_vars['iteration'])], i)
 
             else:
 
                 if bn_vars is not None: # If using batchnorm, run over a bunch of training data first to make the running-average stats good.
-                    _train_gen = train_data()
+                    #_train_gen = train_data()
                     for i in xrange(bn_stats_iters):
                         try:
-                            bn_stats_fn(list(_train_gen.next()), i)
+                            bn_stats_fn([],i)
                         except StopIteration:
-                            _train_gen = train_data()
-                            bn_stats_fn(list(_train_gen.next()), i)
+                            #_train_gen = train_data()
+                            bn_stats_fn([], i)
 
-
+            '''
             if (test_data is not None) and _vars['iteration'] % test_every == (test_every-1):
                 if inject_iteration:
 
@@ -271,7 +259,7 @@ def train_loop(
                 mean_test_outputs = np.array(test_outputs).mean(axis=0)
 
                 log(mean_test_outputs, True, _vars, [])
-
+            '''
             if (callback is not None) and _vars['iteration'] % callback_every == (callback_every-1):
                 tag = "iter{}".format(_vars['iteration'])
                 callback(tag)

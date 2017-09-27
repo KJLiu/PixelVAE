@@ -1,4 +1,8 @@
 reated by https://www.gitignore.io/api/python
+## Dataset ##
+# LSUN & CelebA dataset
+data/
+
 
 ### Python ###
 # Byte-compiled / optimized / DLL files

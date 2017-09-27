@@ -5,6 +5,9 @@ Ishaan Gulrajani, Kundan Kumar, Faruk Ahmed, Adrien Ali Taiga, Francesco Visin, 
 
 import os, sys
 sys.path.append(os.getcwd())
+orig_stdout = sys.stdout
+f = open('debug_python_output.txt', 'w')
+sys.stdout = f
 
 N_GPUS = 4
 
@@ -23,9 +26,9 @@ import tflib.ops.linear
 import tflib.ops.batchnorm
 import tflib.ops.embedding
 
-import tflib.lsun_bedrooms
-import tflib.mnist_256
-import tflib.small_imagenet
+#import tflib.lsun_bedrooms
+#import tflib.mnist_256
+#import tflib.small_imagenet
 
 import numpy as np
 import tensorflow as tf
@@ -35,9 +38,9 @@ from scipy.misc import imsave
 import time
 import functools
 
-DATASET = 'mnist_256' # mnist_256, lsun_32, lsun_64, imagenet_64
-SETTINGS = 'mnist_256' # mnist_256, 32px_small, 32px_big, 64px_small, 64px_big
-
+DATASET = 'Bedroom' # mnist_256, lsun_32, lsun_64, imagenet_64
+#SETTINGS = 'mnist_256' # mnist_256, 32px_small, 32px_big, 64px_small, 64px_big
+SETTINGS = '64px_small'
 if SETTINGS == 'mnist_256':
     # two_level uses Enc1/Dec1 for the bottom level, Enc2/Dec2 for the top level
     # one_level uses EncFull/DecFull for the bottom (and only) level
@@ -118,7 +121,7 @@ elif SETTINGS == '32px_small':
     PIX_2_N_BLOCKS = 1
 
     TIMES = {
-        'test_every': 1000,
+        'test_every': 100,
         'stop_after': 200000,
         'callback_every': 20000
     }
@@ -146,12 +149,12 @@ elif SETTINGS == '32px_big':
     HIGHER_LEVEL_PIXCNN = True
 
     DIM_EMBED    = 16
-    DIM_PIX_1    = 256
+    DIM_PIX_1    = 512 #256
     DIM_1        = 128
     DIM_2        = 256
     DIM_3        = 512
     LATENT_DIM_1 = 128
-    DIM_PIX_2    = 512
+    DIM_PIX_2    = 768#512
     DIM_4        = 512
     LATENT_DIM_2 = 512
 
@@ -189,23 +192,23 @@ elif SETTINGS == '64px_small':
     PIXEL_LEVEL_PIXCNN = True
     HIGHER_LEVEL_PIXCNN = True
 
-    DIM_EMBED    = 16
-    DIM_PIX_1    = 128
-    DIM_0        = 64
-    DIM_1        = 64
-    DIM_2        = 128
-    LATENT_DIM_1 = 64
-    DIM_PIX_2    = 256
-    DIM_3        = 256
-    DIM_4        = 512
-    LATENT_DIM_2 = 512
+    DIM_EMBED    = 16 
+    DIM_PIX_1    = 128 
+    DIM_0        = 64 
+    DIM_1        = 64 
+    DIM_2        = 128 
+    LATENT_DIM_1 = 64 
+    DIM_PIX_2    = 256 
+    DIM_3        = 256 
+    DIM_4        = 512 
+    LATENT_DIM_2 = 512 
 
     PIX_2_N_BLOCKS = 1
 
     TIMES = {
-        'test_every': 10000,
+        'test_every': 5000,
         'stop_after': 200000,
-        'callback_every': 50000
+        'callback_every': 10000
     }
 
     VANILLA = False
@@ -250,7 +253,7 @@ elif SETTINGS == '64px_big':
     TIMES = {
         'test_every': 10000,
         'stop_after': 400000,
-        'callback_every': 50000
+        'callback_every': 5000
     }
 
     VANILLA = False
@@ -264,7 +267,7 @@ elif SETTINGS == '64px_big':
     KL_PENALTY = 1.00
     BETA_ITERS = 500
 
-    BATCH_SIZE = 48
+    BATCH_SIZE = 64
     N_CHANNELS = 3
     HEIGHT = 64
     WIDTH = 64
@@ -327,7 +330,7 @@ elif SETTINGS=='64px_big_onelevel':
     LATENTS1_WIDTH = 7
 
 
-
+'''
 if DATASET == 'mnist_256':
     train_data, dev_data, test_data = lib.mnist_256.load(BATCH_SIZE, BATCH_SIZE)
 elif DATASET == 'lsun_32':
@@ -336,27 +339,40 @@ elif DATASET == 'lsun_64':
     train_data, dev_data = lib.lsun_bedrooms.load(BATCH_SIZE, downsample=False)
 elif DATASET == 'imagenet_64':
     train_data, dev_data = lib.small_imagenet.load(BATCH_SIZE)
-
+'''
+#DATASET = 'CelebA'
+from data_loader import get_loader
+data_path = os.path.join('data', DATASET)
+#all_images = get_loader(
+#            data_path, batch_size=BATCH_SIZE, scale_size=64, data_format='NCHW', split='train')
 lib.print_model_settings(locals().copy())
 
 DEVICES = ['/gpu:{}'.format(i) for i in xrange(N_GPUS)]
 
 lib.ops.conv2d.enable_default_weightnorm()
 lib.ops.linear.enable_default_weightnorm()
-
-with tf.Session(config=tf.ConfigProto(allow_soft_placement=True)) as session:
+config = tf.ConfigProto(allow_soft_placement=True)
+config.gpu_options.allow_growth = True
+with tf.Session(config=config) as session:
     bn_is_training = tf.placeholder(tf.bool, shape=None, name='bn_is_training')
     bn_stats_iter = tf.placeholder(tf.int32, shape=None, name='bn_stats_iter')
     total_iters = tf.placeholder(tf.int32, shape=None, name='total_iters')
-    all_images = tf.placeholder(tf.int32, shape=[None, N_CHANNELS, HEIGHT, WIDTH], name='all_images')
+    #all_images = tf.placeholder(tf.int32, shape=[None, N_CHANNELS, HEIGHT, WIDTH], name='all_images')
+    all_images = get_loader(
+            data_path, batch_size=BATCH_SIZE, scale_size=64, data_format='NCHW', split='train')
+    #all_images = tf.get_variable('all_image', shape=[64, N_CHANNELS, HEIGHT, WIDTH], dtype=tf.int32)
+    #all_images = tf.cast(all_images, 'int32')
     all_latents1 = tf.placeholder(tf.float32, shape=[None, LATENT_DIM_1, LATENTS1_HEIGHT, LATENTS1_WIDTH], name='all_latents1')
 
     split_images = tf.split(all_images, len(DEVICES), axis=0)
-    split_latents1 = tf.split(all_images, len(DEVICES), axis=0)
+    split_latents1 = tf.split(all_latents1, len(DEVICES), axis=0)
 
     tower_cost = []
     tower_outputs1_sample = []
-
+    tower_mu1_prior = []
+    tower_logsig1_prior = []
+    tower_latents1 = []
+    tower_latents2 = []
     for device_index, (device, images, latents1_sample) in enumerate(zip(DEVICES, split_images, split_latents1)):
         with tf.device(device):
 
@@ -717,6 +733,8 @@ with tf.Session(config=tf.ConfigProto(allow_soft_placement=True)) as session:
                 embedded_images = lib.ops.embedding.Embedding('Embedding', 256, DIM_EMBED, images)
                 embedded_images = tf.transpose(embedded_images, [0,4,1,2,3])
                 embedded_images = tf.reshape(embedded_images, [-1, DIM_EMBED*N_CHANNELS, HEIGHT, WIDTH])
+                print 'Embedded image shape: ' + str(embedded_images.get_shape().as_list())
+            print 'Image shape: ' + str(images.get_shape().as_list())
 
             if MODE == 'one_level':
 
@@ -779,6 +797,8 @@ with tf.Session(config=tf.ConfigProto(allow_soft_placement=True)) as session:
                 latents1 = mu1 + (eps * sig1)
 
                 if EMBED_INPUTS:
+                    print 'latents 1 shape: ' + str(latents1.get_shape().as_list())
+                    print 'latents 1 sample shape: ' + str(latents1_sample.get_shape().as_list())
                     outputs1 = Dec1(latents1, embedded_images)
                     outputs1_sample = Dec1(latents1_sample, embedded_images)
                 else:
@@ -799,13 +819,14 @@ with tf.Session(config=tf.ConfigProto(allow_soft_placement=True)) as session:
 
                 eps = tf.random_normal(tf.shape(mu2))
                 latents2 = mu2 + (eps * sig2)
-
+                print 'Dec2 l2 shape: ' + str(latents2.get_shape().as_list())
+                print 'Dec2 l1 shape: ' + str(latents1.get_shape().as_list())
                 outputs2 = Dec2(latents2, latents1)
 
                 mu1_prior, logsig1_prior, sig1_prior = split(outputs2)
                 logsig1_prior, sig1_prior = clamp_logsig_and_sig(logsig1_prior, sig1_prior)
                 mu1_prior = 2. * tf.nn.softsign(mu1_prior / 2.)
-
+                print 'mu1_prior shape: ' + str(mu1_prior.get_shape().as_list())
                 # Assembly
 
                 # An alpha of exactly 0 can sometimes cause inf/nan values, so we're
@@ -840,15 +861,26 @@ with tf.Session(config=tf.ConfigProto(allow_soft_placement=True)) as session:
             tower_cost.append(cost)
             if MODE == 'two_level':
                 tower_outputs1_sample.append(outputs1_sample)
+                tower_mu1_prior.append(mu1_prior)
+                tower_logsig1_prior.append(logsig1_prior)
+                tower_latents1.append(latents1)
+                tower_latents2.append(latents2)
+                
 
     full_cost = tf.reduce_mean(
         tf.concat([tf.expand_dims(x, 0) for x in tower_cost], axis=0), 0
     )
+    full_mu1_prior = tf.concat(tower_mu1_prior, axis = 0)
+    full_logsig1_prior = tf.concat(tower_logsig1_prior, axis=0)
+    full_latents1 = tf.concat(tower_latents1, axis = 0)
+    full_latents2 = tf.concat(tower_latents2, axis = 0)
+
+    print 'full_mu1_prior shape: ' + str(full_mu1_prior.get_shape().as_list())
+    #print 'full_logsig1_prior shape: ' + str(full_logsig1_prior.get_shape().as_list())
 
     if MODE == 'two_level':
         full_outputs1_sample = tf.concat(tower_outputs1_sample, axis=0)
-
-    # Sampling
+        # Sampling
 
     if MODE == 'one_level':
 
@@ -905,7 +937,7 @@ with tf.Session(config=tf.ConfigProto(allow_soft_placement=True)) as session:
     elif MODE == 'two_level':
 
         def dec2_fn(_latents, _targets):
-            return session.run([mu1_prior, logsig1_prior], feed_dict={latents2: _latents, latents1: _targets, total_iters: 99999, bn_is_training: False, bn_stats_iter: 0})
+            return session.run([full_mu1_prior, full_logsig1_prior], feed_dict={full_latents2: _latents, full_latents1: _targets, total_iters: 99999, bn_is_training: False, bn_stats_iter: 0})
 
         ch_sym = tf.placeholder(tf.int32, shape=None)
         y_sym = tf.placeholder(tf.int32, shape=None)
@@ -950,6 +982,8 @@ with tf.Session(config=tf.ConfigProto(allow_soft_placement=True)) as session:
             # Draw z1 autoregressively using z2 and epsilon1
             print "Generating z1"
             z1 = np.zeros((N_SAMPLES, LATENT_DIM_1, LATENTS1_HEIGHT, LATENTS1_WIDTH), dtype='float32')
+            #print 'z1 shape: ' + str(z1.shape)
+            #print 'z2 shape: ' + str(z2.shape)
             for y in xrange(LATENTS1_HEIGHT):
               for x in xrange(LATENTS1_WIDTH):
                 z1_prior_mu, z1_prior_logsig = dec2_fn(z2, z1)
@@ -1024,10 +1058,12 @@ with tf.Session(config=tf.ConfigProto(allow_soft_placement=True)) as session:
         stop_after=TIMES['stop_after'],
         prints=prints,
         optimizer=tf.train.AdamOptimizer(decayed_lr),
-        train_data=train_data,
-        test_data=dev_data,
+        #train_data=train_data,
+        test_data=None,
         callback=generate_and_save_samples,
         callback_every=TIMES['callback_every'],
         test_every=TIMES['test_every'],
         save_checkpoints=True
     )
+sys.stdout=orig_stdout
+f.close()

@@ -1,0 +1,382 @@
+Model settings:
+	ALPHA1_ITERS: 2000
+	ALPHA2_ITERS: 10000
+	BATCH_SIZE: 64
+	BETA_ITERS: 1000
+	DATASET: Bedroom
+	DIM_0: 64
+	DIM_1: 64
+	DIM_2: 128
+	DIM_3: 256
+	DIM_4: 512
+	DIM_EMBED: 16
+	DIM_PIX_1: 128
+	DIM_PIX_2: 256
+	EMBED_INPUTS: True
+	HEIGHT: 64
+	HIGHER_LEVEL_PIXCNN: True
+	KL_PENALTY: 1.0
+	LATENTS1_HEIGHT: 16
+	LATENTS1_WIDTH: 16
+	LATENT_DIM_1: 64
+	LATENT_DIM_2: 512
+	LR: 0.001
+	LR_DECAY_AFTER: 180000
+	LR_DECAY_FACTOR: 0.1
+	MODE: two_level
+	N_CHANNELS: 3
+	N_GPUS: 4
+	PIXEL_LEVEL_PIXCNN: True
+	PIX_2_N_BLOCKS: 1
+	SETTINGS: 64px_small
+	TIMES: {'stop_after': 200000, 'test_every': 5000, 'callback_every': 10000}
+	VANILLA: False
+	WIDTH: 64
+Embedded image shape: [16, 48, 64, 64]
+Image shape: [16, 3, 64, 64]
+latents 1 shape: [16, 64, 16, 16]
+latents 1 sample shape: [None, 64, 16, 16]
+Dec2 l2 shape: [16, 512]
+Dec2 l1 shape: [16, 64, 16, 16]
+mu1_prior shape: [16, 64, 16, 16]
+Embedded image shape: [16, 48, 64, 64]
+Image shape: [16, 3, 64, 64]
+latents 1 shape: [16, 64, 16, 16]
+latents 1 sample shape: [None, 64, 16, 16]
+Dec2 l2 shape: [16, 512]
+Dec2 l1 shape: [16, 64, 16, 16]
+mu1_prior shape: [16, 64, 16, 16]
+Embedded image shape: [16, 48, 64, 64]
+Image shape: [16, 3, 64, 64]
+latents 1 shape: [16, 64, 16, 16]
+latents 1 sample shape: [None, 64, 16, 16]
+Dec2 l2 shape: [16, 512]
+Dec2 l1 shape: [16, 64, 16, 16]
+mu1_prior shape: [16, 64, 16, 16]
+Embedded image shape: [16, 48, 64, 64]
+Image shape: [16, 3, 64, 64]
+latents 1 shape: [16, 64, 16, 16]
+latents 1 sample shape: [None, 64, 16, 16]
+Dec2 l2 shape: [16, 512]
+Dec2 l1 shape: [16, 64, 16, 16]
+mu1_prior shape: [16, 64, 16, 16]
+full_mu1_prior shape: [64, 64, 16, 16]
+Params:
+	Embedding.EmbeddingMatrix:0 (256,16)
+	Enc1.Input/Enc1.Input.Filters:0 (1,1,48,64)
+	Enc1.Input/Enc1.Input.g:0 (64)
+	Enc1.Input/Enc1.Input.Biases:0 (64)
+	Enc1.InputRes0.Conv1/Enc1.InputRes0.Conv1.Filters:0 (3,3,64,64)
+	Enc1.InputRes0.Conv1/Enc1.InputRes0.Conv1.Biases:0 (64)
+	Enc1.InputRes0.Conv2/Enc1.InputRes0.Conv2.Filters:0 (3,3,64,64)
+	Enc1.InputRes0.BN.offset:0 (64)
+	Enc1.InputRes0.BN.scale:0 (64)
+	Enc1.InputRes.Shortcut/Enc1.InputRes.Shortcut.Filters:0 (1,1,64,64)
+	Enc1.InputRes.Shortcut/Enc1.InputRes.Shortcut.g:0 (64)
+	Enc1.InputRes.Shortcut/Enc1.InputRes.Shortcut.Biases:0 (64)
+	Enc1.InputRes.Conv1/Enc1.InputRes.Conv1.Filters:0 (3,3,64,64)
+	Enc1.InputRes.Conv1/Enc1.InputRes.Conv1.Biases:0 (64)
+	Enc1.InputRes.Conv2/Enc1.InputRes.Conv2.Filters:0 (3,3,64,64)
+	Enc1.InputRes.BN.offset:0 (64)
+	Enc1.InputRes.BN.scale:0 (64)
+	Enc1.Res1Pre.Conv1/Enc1.Res1Pre.Conv1.Filters:0 (3,3,64,64)
+	Enc1.Res1Pre.Conv1/Enc1.Res1Pre.Conv1.Biases:0 (64)
+	Enc1.Res1Pre.Conv2/Enc1.Res1Pre.Conv2.Filters:0 (3,3,64,64)
+	Enc1.Res1Pre.BN.offset:0 (64)
+	Enc1.Res1Pre.BN.scale:0 (64)
+	Enc1.Res1Pre2.Conv1/Enc1.Res1Pre2.Conv1.Filters:0 (3,3,64,64)
+	Enc1.Res1Pre2.Conv1/Enc1.Res1Pre2.Conv1.Biases:0 (64)
+	Enc1.Res1Pre2.Conv2/Enc1.Res1Pre2.Conv2.Filters:0 (3,3,64,64)
+	Enc1.Res1Pre2.BN.offset:0 (64)
+	Enc1.Res1Pre2.BN.scale:0 (64)
+	Enc1.Res1.Shortcut/Enc1.Res1.Shortcut.Filters:0 (1,1,64,128)
+	Enc1.Res1.Shortcut/Enc1.Res1.Shortcut.g:0 (128)
+	Enc1.Res1.Shortcut/Enc1.Res1.Shortcut.Biases:0 (128)
+	Enc1.Res1.Conv1/Enc1.Res1.Conv1.Filters:0 (3,3,64,64)
+	Enc1.Res1.Conv1/Enc1.Res1.Conv1.Biases:0 (64)
+	Enc1.Res1.Conv2/Enc1.Res1.Conv2.Filters:0 (3,3,64,128)
+	Enc1.Res1.BN.offset:0 (128)
+	Enc1.Res1.BN.scale:0 (128)
+	Enc1.Res4Pre.Conv1/Enc1.Res4Pre.Conv1.Filters:0 (3,3,128,128)
+	Enc1.Res4Pre.Conv1/Enc1.Res4Pre.Conv1.Biases:0 (128)
+	Enc1.Res4Pre.Conv2/Enc1.Res4Pre.Conv2.Filters:0 (3,3,128,128)
+	Enc1.Res4Pre.BN.offset:0 (128)
+	Enc1.Res4Pre.BN.scale:0 (128)
+	Enc1.Res4.Conv1/Enc1.Res4.Conv1.Filters:0 (3,3,128,128)
+	Enc1.Res4.Conv1/Enc1.Res4.Conv1.Biases:0 (128)
+	Enc1.Res4.Conv2/Enc1.Res4.Conv2.Filters:0 (3,3,128,128)
+	Enc1.Res4.BN.offset:0 (128)
+	Enc1.Res4.BN.scale:0 (128)
+	Enc1.Res4Post.Conv1/Enc1.Res4Post.Conv1.Filters:0 (3,3,128,128)
+	Enc1.Res4Post.Conv1/Enc1.Res4Post.Conv1.Biases:0 (128)
+	Enc1.Res4Post.Conv2/Enc1.Res4Post.Conv2.Filters:0 (3,3,128,128)
+	Enc1.Res4Post.BN.offset:0 (128)
+	Enc1.Res4Post.BN.scale:0 (128)
+	Enc1.Out/Enc1.Out.Filters:0 (1,1,128,128)
+	Enc1.Out/Enc1.Out.g:0 (128)
+	Enc1.Out/Enc1.Out.Biases:0 (128)
+	Dec1.Input/Dec1.Input.Filters:0 (1,1,64,128)
+	Dec1.Input/Dec1.Input.g:0 (128)
+	Dec1.Input/Dec1.Input.Biases:0 (128)
+	Dec1.Res1A.Conv1/Dec1.Res1A.Conv1.Filters:0 (3,3,128,128)
+	Dec1.Res1A.Conv1/Dec1.Res1A.Conv1.Biases:0 (128)
+	Dec1.Res1A.Conv2/Dec1.Res1A.Conv2.Filters:0 (3,3,128,128)
+	Dec1.Res1A.BN.offset:0 (128)
+	Dec1.Res1A.BN.scale:0 (128)
+	Dec1.Res1B.Conv1/Dec1.Res1B.Conv1.Filters:0 (3,3,128,128)
+	Dec1.Res1B.Conv1/Dec1.Res1B.Conv1.Biases:0 (128)
+	Dec1.Res1B.Conv2/Dec1.Res1B.Conv2.Filters:0 (3,3,128,128)
+	Dec1.Res1B.BN.offset:0 (128)
+	Dec1.Res1B.BN.scale:0 (128)
+	Dec1.Res1C.Conv1/Dec1.Res1C.Conv1.Filters:0 (3,3,128,128)
+	Dec1.Res1C.Conv1/Dec1.Res1C.Conv1.Biases:0 (128)
+	Dec1.Res1C.Conv2/Dec1.Res1C.Conv2.Filters:0 (3,3,128,128)
+	Dec1.Res1C.BN.offset:0 (128)
+	Dec1.Res1C.BN.scale:0 (128)
+	Dec1.Res3.Shortcut/Dec1.Res3.Shortcut.Filters:0 (1,1,128,256)
+	Dec1.Res3.Shortcut/Dec1.Res3.Shortcut.g:0 (256)
+	Dec1.Res3.Shortcut/Dec1.Res3.Shortcut.Biases:0 (256)
+	Dec1.Res3.Conv1/Dec1.Res3.Conv1.Filters:0 (3,3,128,256)
+	Dec1.Res3.Conv1/Dec1.Res3.Conv1.Biases:0 (256)
+	Dec1.Res3.Conv2/Dec1.Res3.Conv2.Filters:0 (3,3,64,64)
+	Dec1.Res3.BN.offset:0 (64)
+	Dec1.Res3.BN.scale:0 (64)
+	Dec1.Res3Post.Conv1/Dec1.Res3Post.Conv1.Filters:0 (3,3,64,64)
+	Dec1.Res3Post.Conv1/Dec1.Res3Post.Conv1.Biases:0 (64)
+	Dec1.Res3Post.Conv2/Dec1.Res3Post.Conv2.Filters:0 (3,3,64,64)
+	Dec1.Res3Post.BN.offset:0 (64)
+	Dec1.Res3Post.BN.scale:0 (64)
+	Dec1.Res3Post2.Conv1/Dec1.Res3Post2.Conv1.Filters:0 (3,3,64,64)
+	Dec1.Res3Post2.Conv1/Dec1.Res3Post2.Conv1.Biases:0 (64)
+	Dec1.Res3Post2.Conv2/Dec1.Res3Post2.Conv2.Filters:0 (3,3,64,64)
+	Dec1.Res3Post2.BN.offset:0 (64)
+	Dec1.Res3Post2.BN.scale:0 (64)
+	Dec1.Res4.Shortcut/Dec1.Res4.Shortcut.Filters:0 (1,1,64,256)
+	Dec1.Res4.Shortcut/Dec1.Res4.Shortcut.g:0 (256)
+	Dec1.Res4.Shortcut/Dec1.Res4.Shortcut.Biases:0 (256)
+	Dec1.Res4.Conv1/Dec1.Res4.Conv1.Filters:0 (3,3,64,256)
+	Dec1.Res4.Conv1/Dec1.Res4.Conv1.Biases:0 (256)
+	Dec1.Res4.Conv2/Dec1.Res4.Conv2.Filters:0 (3,3,64,64)
+	Dec1.Res4.BN.offset:0 (64)
+	Dec1.Res4.BN.scale:0 (64)
+	Dec1.Res4Post.Conv1/Dec1.Res4Post.Conv1.Filters:0 (3,3,64,64)
+	Dec1.Res4Post.Conv1/Dec1.Res4Post.Conv1.Biases:0 (64)
+	Dec1.Res4Post.Conv2/Dec1.Res4Post.Conv2.Filters:0 (3,3,64,64)
+	Dec1.Res4Post.BN.offset:0 (64)
+	Dec1.Res4Post.BN.scale:0 (64)
+	Dec1.Pix1/Dec1.Pix1.Filters:0 (5,5,48,64)
+	Dec1.Pix1/Dec1.Pix1.g:0 (64)
+	Dec1.Pix1/Dec1.Pix1.Biases:0 (64)
+	Dec1.Pix2Res.Conv1A/Dec1.Pix2Res.Conv1A.Filters:0 (3,3,128,128)
+	Dec1.Pix2Res.Conv1A/Dec1.Pix2Res.Conv1A.g:0 (128)
+	Dec1.Pix2Res.Conv1A/Dec1.Pix2Res.Conv1A.Biases:0 (128)
+	Dec1.Pix2Res.Conv1B/Dec1.Pix2Res.Conv1B.Filters:0 (3,3,128,128)
+	Dec1.Pix2Res.Conv1B/Dec1.Pix2Res.Conv1B.g:0 (128)
+	Dec1.Pix2Res.Conv1B/Dec1.Pix2Res.Conv1B.Biases:0 (128)
+	Dec1.Pix2Res.Conv2/Dec1.Pix2Res.Conv2.Filters:0 (3,3,128,128)
+	Dec1.Pix2Res.Conv2/Dec1.Pix2Res.Conv2.g:0 (128)
+	Dec1.Pix2Res.Conv2/Dec1.Pix2Res.Conv2.Biases:0 (128)
+	Dec1.Pix3Res.Conv1A/Dec1.Pix3Res.Conv1A.Filters:0 (3,3,128,128)
+	Dec1.Pix3Res.Conv1A/Dec1.Pix3Res.Conv1A.g:0 (128)
+	Dec1.Pix3Res.Conv1A/Dec1.Pix3Res.Conv1A.Biases:0 (128)
+	Dec1.Pix3Res.Conv1B/Dec1.Pix3Res.Conv1B.Filters:0 (3,3,128,128)
+	Dec1.Pix3Res.Conv1B/Dec1.Pix3Res.Conv1B.g:0 (128)
+	Dec1.Pix3Res.Conv1B/Dec1.Pix3Res.Conv1B.Biases:0 (128)
+	Dec1.Pix3Res.Conv2/Dec1.Pix3Res.Conv2.Filters:0 (3,3,128,128)
+	Dec1.Pix3Res.Conv2/Dec1.Pix3Res.Conv2.g:0 (128)
+	Dec1.Pix3Res.Conv2/Dec1.Pix3Res.Conv2.Biases:0 (128)
+	Dec1.Pix4Res.Conv1A/Dec1.Pix4Res.Conv1A.Filters:0 (3,3,128,128)
+	Dec1.Pix4Res.Conv1A/Dec1.Pix4Res.Conv1A.g:0 (128)
+	Dec1.Pix4Res.Conv1A/Dec1.Pix4Res.Conv1A.Biases:0 (128)
+	Dec1.Pix4Res.Conv1B/Dec1.Pix4Res.Conv1B.Filters:0 (3,3,128,128)
+	Dec1.Pix4Res.Conv1B/Dec1.Pix4Res.Conv1B.g:0 (128)
+	Dec1.Pix4Res.Conv1B/Dec1.Pix4Res.Conv1B.Biases:0 (128)
+	Dec1.Pix4Res.Conv2/Dec1.Pix4Res.Conv2.Filters:0 (3,3,128,128)
+	Dec1.Pix4Res.Conv2/Dec1.Pix4Res.Conv2.g:0 (128)
+	Dec1.Pix4Res.Conv2/Dec1.Pix4Res.Conv2.Biases:0 (128)
+	Dec1.Out/Dec1.Out.Filters:0 (1,1,128,768)
+	Dec1.Out/Dec1.Out.g:0 (768)
+	Dec1.Out/Dec1.Out.Biases:0 (768)
+	Enc2.Res0.Conv1/Enc2.Res0.Conv1.Filters:0 (3,3,128,128)
+	Enc2.Res0.Conv1/Enc2.Res0.Conv1.Biases:0 (128)
+	Enc2.Res0.Conv2/Enc2.Res0.Conv2.Filters:0 (3,3,128,128)
+	Enc2.Res0.BN.offset:0 (128)
+	Enc2.Res0.BN.scale:0 (128)
+	Enc2.Res1Pre.Conv1/Enc2.Res1Pre.Conv1.Filters:0 (3,3,128,128)
+	Enc2.Res1Pre.Conv1/Enc2.Res1Pre.Conv1.Biases:0 (128)
+	Enc2.Res1Pre.Conv2/Enc2.Res1Pre.Conv2.Filters:0 (3,3,128,128)
+	Enc2.Res1Pre.BN.offset:0 (128)
+	Enc2.Res1Pre.BN.scale:0 (128)
+	Enc2.Res1Pre2.Conv1/Enc2.Res1Pre2.Conv1.Filters:0 (3,3,128,128)
+	Enc2.Res1Pre2.Conv1/Enc2.Res1Pre2.Conv1.Biases:0 (128)
+	Enc2.Res1Pre2.Conv2/Enc2.Res1Pre2.Conv2.Filters:0 (3,3,128,128)
+	Enc2.Res1Pre2.BN.offset:0 (128)
+	Enc2.Res1Pre2.BN.scale:0 (128)
+	Enc2.Res1.Shortcut/Enc2.Res1.Shortcut.Filters:0 (1,1,128,256)
+	Enc2.Res1.Shortcut/Enc2.Res1.Shortcut.g:0 (256)
+	Enc2.Res1.Shortcut/Enc2.Res1.Shortcut.Biases:0 (256)
+	Enc2.Res1.Conv1/Enc2.Res1.Conv1.Filters:0 (3,3,128,128)
+	Enc2.Res1.Conv1/Enc2.Res1.Conv1.Biases:0 (128)
+	Enc2.Res1.Conv2/Enc2.Res1.Conv2.Filters:0 (3,3,128,256)
+	Enc2.Res1.BN.offset:0 (256)
+	Enc2.Res1.BN.scale:0 (256)
+	Enc2.Res2Pre.Conv1/Enc2.Res2Pre.Conv1.Filters:0 (3,3,256,256)
+	Enc2.Res2Pre.Conv1/Enc2.Res2Pre.Conv1.Biases:0 (256)
+	Enc2.Res2Pre.Conv2/Enc2.Res2Pre.Conv2.Filters:0 (3,3,256,256)
+	Enc2.Res2Pre.BN.offset:0 (256)
+	Enc2.Res2Pre.BN.scale:0 (256)
+	Enc2.Res2Pre2.Conv1/Enc2.Res2Pre2.Conv1.Filters:0 (3,3,256,256)
+	Enc2.Res2Pre2.Conv1/Enc2.Res2Pre2.Conv1.Biases:0 (256)
+	Enc2.Res2Pre2.Conv2/Enc2.Res2Pre2.Conv2.Filters:0 (3,3,256,256)
+	Enc2.Res2Pre2.BN.offset:0 (256)
+	Enc2.Res2Pre2.BN.scale:0 (256)
+	Enc2.Res2Pre3.Conv1/Enc2.Res2Pre3.Conv1.Filters:0 (3,3,256,256)
+	Enc2.Res2Pre3.Conv1/Enc2.Res2Pre3.Conv1.Biases:0 (256)
+	Enc2.Res2Pre3.Conv2/Enc2.Res2Pre3.Conv2.Filters:0 (3,3,256,256)
+	Enc2.Res2Pre3.BN.offset:0 (256)
+	Enc2.Res2Pre3.BN.scale:0 (256)
+	Enc2.Res1A.Shortcut/Enc2.Res1A.Shortcut.Filters:0 (1,1,256,512)
+	Enc2.Res1A.Shortcut/Enc2.Res1A.Shortcut.g:0 (512)
+	Enc2.Res1A.Shortcut/Enc2.Res1A.Shortcut.Biases:0 (512)
+	Enc2.Res1A.Conv1/Enc2.Res1A.Conv1.Filters:0 (3,3,256,256)
+	Enc2.Res1A.Conv1/Enc2.Res1A.Conv1.Biases:0 (256)
+	Enc2.Res1A.Conv2/Enc2.Res1A.Conv2.Filters:0 (3,3,256,512)
+	Enc2.Res1A.BN.offset:0 (512)
+	Enc2.Res1A.BN.scale:0 (512)
+	Enc2.Res2PreA.Conv1/Enc2.Res2PreA.Conv1.Filters:0 (3,3,512,512)
+	Enc2.Res2PreA.Conv1/Enc2.Res2PreA.Conv1.Biases:0 (512)
+	Enc2.Res2PreA.Conv2/Enc2.Res2PreA.Conv2.Filters:0 (3,3,512,512)
+	Enc2.Res2PreA.BN.offset:0 (512)
+	Enc2.Res2PreA.BN.scale:0 (512)
+	Enc2.Res2.Conv1/Enc2.Res2.Conv1.Filters:0 (3,3,512,512)
+	Enc2.Res2.Conv1/Enc2.Res2.Conv1.Biases:0 (512)
+	Enc2.Res2.Conv2/Enc2.Res2.Conv2.Filters:0 (3,3,512,512)
+	Enc2.Res2.BN.offset:0 (512)
+	Enc2.Res2.BN.scale:0 (512)
+	Enc2.Res2Post.Conv1/Enc2.Res2Post.Conv1.Filters:0 (3,3,512,512)
+	Enc2.Res2Post.Conv1/Enc2.Res2Post.Conv1.Biases:0 (512)
+	Enc2.Res2Post.Conv2/Enc2.Res2Post.Conv2.Filters:0 (3,3,512,512)
+	Enc2.Res2Post.BN.offset:0 (512)
+	Enc2.Res2Post.BN.scale:0 (512)
+	Enc2.Output/Enc2.Output.W:0 (8192,1024)
+	Enc2.Output/Enc2.Output.g:0 (1024)
+	Enc2.Output/Enc2.Output.b:0 (1024)
+	Dec2.Input/Dec2.Input.W:0 (512,8192)
+	Dec2.Input/Dec2.Input.g:0 (8192)
+	Dec2.Input/Dec2.Input.b:0 (8192)
+	Dec2.Res1Pre.Conv1/Dec2.Res1Pre.Conv1.Filters:0 (3,3,512,512)
+	Dec2.Res1Pre.Conv1/Dec2.Res1Pre.Conv1.Biases:0 (512)
+	Dec2.Res1Pre.Conv2/Dec2.Res1Pre.Conv2.Filters:0 (3,3,512,512)
+	Dec2.Res1Pre.BN.offset:0 (512)
+	Dec2.Res1Pre.BN.scale:0 (512)
+	Dec2.Res1.Conv1/Dec2.Res1.Conv1.Filters:0 (3,3,512,512)
+	Dec2.Res1.Conv1/Dec2.Res1.Conv1.Biases:0 (512)
+	Dec2.Res1.Conv2/Dec2.Res1.Conv2.Filters:0 (3,3,512,512)
+	Dec2.Res1.BN.offset:0 (512)
+	Dec2.Res1.BN.scale:0 (512)
+	Dec2.Res1Post.Conv1/Dec2.Res1Post.Conv1.Filters:0 (3,3,512,512)
+	Dec2.Res1Post.Conv1/Dec2.Res1Post.Conv1.Biases:0 (512)
+	Dec2.Res1Post.Conv2/Dec2.Res1Post.Conv2.Filters:0 (3,3,512,512)
+	Dec2.Res1Post.BN.offset:0 (512)
+	Dec2.Res1Post.BN.scale:0 (512)
+	Dec2.Res3.Shortcut/Dec2.Res3.Shortcut.Filters:0 (1,1,512,1024)
+	Dec2.Res3.Shortcut/Dec2.Res3.Shortcut.g:0 (1024)
+	Dec2.Res3.Shortcut/Dec2.Res3.Shortcut.Biases:0 (1024)
+	Dec2.Res3.Conv1/Dec2.Res3.Conv1.Filters:0 (3,3,512,1024)
+	Dec2.Res3.Conv1/Dec2.Res3.Conv1.Biases:0 (1024)
+	Dec2.Res3.Conv2/Dec2.Res3.Conv2.Filters:0 (3,3,256,256)
+	Dec2.Res3.BN.offset:0 (256)
+	Dec2.Res3.BN.scale:0 (256)
+	Dec2.Res3Post.Conv1/Dec2.Res3Post.Conv1.Filters:0 (3,3,256,256)
+	Dec2.Res3Post.Conv1/Dec2.Res3Post.Conv1.Biases:0 (256)
+	Dec2.Res3Post.Conv2/Dec2.Res3Post.Conv2.Filters:0 (3,3,256,256)
+	Dec2.Res3Post.BN.offset:0 (256)
+	Dec2.Res3Post.BN.scale:0 (256)
+	Dec2.Res3Post2.Conv1/Dec2.Res3Post2.Conv1.Filters:0 (3,3,256,256)
+	Dec2.Res3Post2.Conv1/Dec2.Res3Post2.Conv1.Biases:0 (256)
+	Dec2.Res3Post2.Conv2/Dec2.Res3Post2.Conv2.Filters:0 (3,3,256,256)
+	Dec2.Res3Post2.BN.offset:0 (256)
+	Dec2.Res3Post2.BN.scale:0 (256)
+	Dec2.Res3Post3.Conv1/Dec2.Res3Post3.Conv1.Filters:0 (3,3,256,256)
+	Dec2.Res3Post3.Conv1/Dec2.Res3Post3.Conv1.Biases:0 (256)
+	Dec2.Res3Post3.Conv2/Dec2.Res3Post3.Conv2.Filters:0 (3,3,256,256)
+	Dec2.Res3Post3.BN.offset:0 (256)
+	Dec2.Res3Post3.BN.scale:0 (256)
+	Dec2.Res3Post5.Shortcut/Dec2.Res3Post5.Shortcut.Filters:0 (1,1,256,512)
+	Dec2.Res3Post5.Shortcut/Dec2.Res3Post5.Shortcut.g:0 (512)
+	Dec2.Res3Post5.Shortcut/Dec2.Res3Post5.Shortcut.Biases:0 (512)
+	Dec2.Res3Post5.Conv1/Dec2.Res3Post5.Conv1.Filters:0 (3,3,256,512)
+	Dec2.Res3Post5.Conv1/Dec2.Res3Post5.Conv1.Biases:0 (512)
+	Dec2.Res3Post5.Conv2/Dec2.Res3Post5.Conv2.Filters:0 (3,3,128,128)
+	Dec2.Res3Post5.BN.offset:0 (128)
+	Dec2.Res3Post5.BN.scale:0 (128)
+	Dec2.Res3Post6.Conv1/Dec2.Res3Post6.Conv1.Filters:0 (3,3,128,128)
+	Dec2.Res3Post6.Conv1/Dec2.Res3Post6.Conv1.Biases:0 (128)
+	Dec2.Res3Post6.Conv2/Dec2.Res3Post6.Conv2.Filters:0 (3,3,128,128)
+	Dec2.Res3Post6.BN.offset:0 (128)
+	Dec2.Res3Post6.BN.scale:0 (128)
+	Dec2.Res3Post7.Conv1/Dec2.Res3Post7.Conv1.Filters:0 (3,3,128,128)
+	Dec2.Res3Post7.Conv1/Dec2.Res3Post7.Conv1.Biases:0 (128)
+	Dec2.Res3Post7.Conv2/Dec2.Res3Post7.Conv2.Filters:0 (3,3,128,128)
+	Dec2.Res3Post7.BN.offset:0 (128)
+	Dec2.Res3Post7.BN.scale:0 (128)
+	Dec2.Res3Post8.Conv1/Dec2.Res3Post8.Conv1.Filters:0 (3,3,128,128)
+	Dec2.Res3Post8.Conv1/Dec2.Res3Post8.Conv1.Biases:0 (128)
+	Dec2.Res3Post8.Conv2/Dec2.Res3Post8.Conv2.Filters:0 (3,3,128,128)
+	Dec2.Res3Post8.BN.offset:0 (128)
+	Dec2.Res3Post8.BN.scale:0 (128)
+	Dec2.Pix1/Dec2.Pix1.Filters:0 (5,5,64,128)
+	Dec2.Pix1/Dec2.Pix1.g:0 (128)
+	Dec2.Pix1/Dec2.Pix1.Biases:0 (128)
+	Dec2.Pix2Res.Conv1A/Dec2.Pix2Res.Conv1A.Filters:0 (3,3,256,256)
+	Dec2.Pix2Res.Conv1A/Dec2.Pix2Res.Conv1A.g:0 (256)
+	Dec2.Pix2Res.Conv1A/Dec2.Pix2Res.Conv1A.Biases:0 (256)
+	Dec2.Pix2Res.Conv1B/Dec2.Pix2Res.Conv1B.Filters:0 (3,3,256,256)
+	Dec2.Pix2Res.Conv1B/Dec2.Pix2Res.Conv1B.g:0 (256)
+	Dec2.Pix2Res.Conv1B/Dec2.Pix2Res.Conv1B.Biases:0 (256)
+	Dec2.Pix2Res.Conv2/Dec2.Pix2Res.Conv2.Filters:0 (3,3,256,256)
+	Dec2.Pix2Res.Conv2/Dec2.Pix2Res.Conv2.g:0 (256)
+	Dec2.Pix2Res.Conv2/Dec2.Pix2Res.Conv2.Biases:0 (256)
+	Dec2.Pix3Res.Conv1A/Dec2.Pix3Res.Conv1A.Filters:0 (3,3,256,256)
+	Dec2.Pix3Res.Conv1A/Dec2.Pix3Res.Conv1A.g:0 (256)
+	Dec2.Pix3Res.Conv1A/Dec2.Pix3Res.Conv1A.Biases:0 (256)
+	Dec2.Pix3Res.Conv1B/Dec2.Pix3Res.Conv1B.Filters:0 (3,3,256,256)
+	Dec2.Pix3Res.Conv1B/Dec2.Pix3Res.Conv1B.g:0 (256)
+	Dec2.Pix3Res.Conv1B/Dec2.Pix3Res.Conv1B.Biases:0 (256)
+	Dec2.Pix3Res.Conv2/Dec2.Pix3Res.Conv2.Filters:0 (3,3,256,256)
+	Dec2.Pix3Res.Conv2/Dec2.Pix3Res.Conv2.g:0 (256)
+	Dec2.Pix3Res.Conv2/Dec2.Pix3Res.Conv2.Biases:0 (256)
+	Dec2.Pix4Res.Conv1A/Dec2.Pix4Res.Conv1A.Filters:0 (1,1,256,256)
+	Dec2.Pix4Res.Conv1A/Dec2.Pix4Res.Conv1A.g:0 (256)
+	Dec2.Pix4Res.Conv1A/Dec2.Pix4Res.Conv1A.Biases:0 (256)
+	Dec2.Pix4Res.Conv1B/Dec2.Pix4Res.Conv1B.Filters:0 (1,1,256,256)
+	Dec2.Pix4Res.Conv1B/Dec2.Pix4Res.Conv1B.g:0 (256)
+	Dec2.Pix4Res.Conv1B/Dec2.Pix4Res.Conv1B.Biases:0 (256)
+	Dec2.Pix4Res.Conv2/Dec2.Pix4Res.Conv2.Filters:0 (1,1,256,256)
+	Dec2.Pix4Res.Conv2/Dec2.Pix4Res.Conv2.g:0 (256)
+	Dec2.Pix4Res.Conv2/Dec2.Pix4Res.Conv2.Biases:0 (256)
+	Dec2.Out/Dec2.Out.Filters:0 (1,1,256,128)
+	Dec2.Out/Dec2.Out.g:0 (128)
+	Dec2.Out/Dec2.Out.Biases:0 (128)
+Total param count: 67,948,416
+Initializing variables...
+done!
+epoch:0	iteration:1	seconds:10.1897	train cost:5.9442	train alpha1:0.0005	train alpha2:0.0000	train reconst:5.9418	train kl1:10.0775	train kl2:0.7335	train gradnorm:0.1735	iter time:10.1897	data time:0.0000
+epoch:1	iteration:2	seconds:10.6588	train cost:5.8489	train alpha1:0.0010	train alpha2:0.0000	train reconst:5.8418	train kl1:8.7726	train kl2:0.7318	train gradnorm:0.1223	iter time:0.4692	data time:0.0000
+epoch:1	iteration:3	seconds:11.0690	train cost:5.7905	train alpha1:0.0015	train alpha2:0.0000	train reconst:5.7798	train kl1:7.9060	train kl2:0.7561	train gradnorm:0.1259	iter time:0.4102	data time:0.0000
+epoch:1	iteration:4	seconds:11.4846	train cost:5.7368	train alpha1:0.0020	train alpha2:0.0000	train reconst:5.7015	train kl1:7.2708	train kl2:0.7905	train gradnorm:0.1176	iter time:0.4156	data time:0.0000
+epoch:1	iteration:5	seconds:11.9490	train cost:5.7004	train alpha1:0.0025	train alpha2:0.0000	train reconst:5.6936	train kl1:6.8077	train kl2:0.7906	train gradnorm:0.1067	iter time:0.4643	data time:0.0000
+epoch:1	iteration:6	seconds:12.4268	train cost:5.6562	train alpha1:0.0030	train alpha2:0.0000	train reconst:5.6452	train kl1:6.4929	train kl2:0.7846	train gradnorm:0.1134	iter time:0.4779	data time:0.0000
+epoch:1	iteration:7	seconds:12.8365	train cost:5.6167	train alpha1:0.0035	train alpha2:0.0000	train reconst:5.5907	train kl1:6.1884	train kl2:0.7142	train gradnorm:0.1215	iter time:0.4097	data time:0.0000
+epoch:1	iteration:8	seconds:13.3044	train cost:5.5466	train alpha1:0.0040	train alpha2:0.0000	train reconst:5.5626	train kl1:5.8705	train kl2:0.7054	train gradnorm:0.1476	iter time:0.4679	data time:0.0000
+epoch:1	iteration:9	seconds:13.7587	train cost:5.4789	train alpha1:0.0045	train alpha2:0.0000	train reconst:5.4723	train kl1:5.6763	train kl2:0.6838	train gradnorm:0.1650	iter time:0.4544	data time:0.0000
+epoch:1	iteration:10	seconds:14.1644	train cost:5.4746	train alpha1:0.0050	train alpha2:0.0000	train reconst:5.3958	train kl1:5.4107	train kl2:0.6638	train gradnorm:0.1632	iter time:0.4056	data time:0.0000
+epoch:1	iteration:11	seconds:14.5632	train cost:5.4323	train alpha1:0.0055	train alpha2:0.0000	train reconst:5.4479	train kl1:5.1212	train kl2:0.6566	train gradnorm:0.1728	iter time:0.3988	data time:0.0000
+epoch:1	iteration:12	seconds:15.0239	train cost:5.4000	train alpha1:0.0060	train alpha2:0.0000	train reconst:5.3889	train kl1:4.8618	train kl2:0.6676	train gradnorm:0.1924	iter time:0.4607	data time:0.0000
+epoch:1	iteration:13	seconds:15.4313	train cost:5.3415	train alpha1:0.0065	train alpha2:0.0000	train reconst:5.2958	train kl1:4.6802	train kl2:0.6741	train gradnorm:0.2537	iter time:0.4075	data time:0.0000
+epoch:1	iteration:14	seconds:15.8917	train cost:5.3180	train alpha1:0.0070	train alpha2:0.0000	train reconst:5.3325	train kl1:4.5198	train kl2:0.6392	train gradnorm:0.3703	iter time:0.4604	data time:0.0000
+epoch:1	iteration:15	seconds:16.3712	train cost:5.2873	train alpha1:0.0075	train alpha2:0.0000	train reconst:5.2996	train kl1:4.3622	train kl2:0.5970	train gradnorm:0.2847	iter time:0.4795	data time:0.0000
+epoch:1	iteration:16	seconds:16.7826	train cost:5.2436	train alpha1:0.0080	train alpha2:0.0000	train reconst:5.2449	train kl1:4.2058	train kl2:0.5815	train gradnorm:0.3126	iter time:0.4114	data time:0.0000
+epoch:1	iteration:17	seconds:17.1940	train cost:5.2171	train alpha1:0.0085	train alpha2:0.0000	train reconst:5.1979	train kl1:4.1522	train kl2:0.5897	train gradnorm:0.3025	iter time:0.4114	data time:0.0000
+epoch:1	iteration:18	seconds:17.6019	train cost:5.1711	train alpha1:0.0090	train alpha2:0.0000	train reconst:5.1458	train kl1:4.1114	train kl2:0.5915	train gradnorm:0.2833	iter time:0.4079	data time:0.0000
+epoch:1	iteration:19	seconds:18.0144	train cost:5.0998	train alpha1:0.0095	train alpha2:0.0000	train reconst:5.0328	train kl1:4.0332	train kl2:0.5530	train gradnorm:0.2363	iter time:0.4125	data time:0.0000

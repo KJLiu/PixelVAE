@@ -8,4 +8,4 @@ def Embedding(name, vocab_size, dim, indices):
         name+'.EmbeddingMatrix',
         np.random.normal(size=(vocab_size, dim)).astype('float32')
     )
-    return tf.gather(embeddings, indices)
+    return tf.gather(embeddings, tf.cast(indices, 'int32'))
